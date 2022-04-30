@@ -22,7 +22,7 @@ public class GamePanel extends JPanel implements ActionListener
 	int body= 4; //A kígyó mérete
 	
 	
-	char direction = 'R';
+	char direction = 'D';
 	int score; //Pontszám
 	
 	int foodX; 
@@ -32,14 +32,16 @@ public class GamePanel extends JPanel implements ActionListener
 	Timer timer;
 	Random random;
 	
-	GamePanel()
+	public GamePanel()
 	{
 		random= new Random();
 		this.setPreferredSize(new Dimension(width,height)); 
 		this.setBackground(Color.black);
 		this.setFocusable(true);
 		this.addKeyListener(new Control());
+		
 		start();
+		
 	}
 	public void start() 
 	{
@@ -65,6 +67,22 @@ public class GamePanel extends JPanel implements ActionListener
 			y[i]=y[i-1];
 			
 		}
+		switch(direction) {
+		case 'U':
+			y[0] = y[0] - unit;
+			break;
+		case 'D':
+			y[0] = y[0] + unit;
+			break;
+		case 'L':
+			x[0] = x[0] - unit;
+			break;
+		case 'R':
+			x[0] = x[0] + unit;
+			break;
+		}
+		
+		/*
 		if(direction=='U') //Felfelé		
 			y[0]= y[0] - unit;
 		
@@ -77,6 +95,7 @@ public class GamePanel extends JPanel implements ActionListener
 		
 		if(direction=='D') //Lefelé 
 			y[0]= y[0] + unit;	
+			*/
 	}
 		
 		
@@ -166,7 +185,7 @@ public class GamePanel extends JPanel implements ActionListener
 	}
 	public class Control extends KeyAdapter
 	{
-		public void buttonPressed(KeyEvent a)
+		public void buttonPressed(KeyEvent e)
 		{
 			/*if(a.getKeyCode()==KeyEvent.VK_RIGHT) //Balra fordulás
 			{
@@ -197,32 +216,36 @@ public class GamePanel extends JPanel implements ActionListener
 				}
 			}
 			*/
-			switch(a.getKeyCode()) 
+			switch(e.getKeyChar()) 
 			{
 			case KeyEvent.VK_LEFT:
-				if(direction!='L')
-				{
-					direction='R'; //Mivel nem akarjuk hogy a felhasználó 180 fokos fordulatot tudnjon tenni és önmagába forduljon a kígyóval így kizártuk ezt a lehetõséget
-				}
-				break;
-			case KeyEvent.VK_RIGHT:
-				if(direction!='L')
-				{
-					direction='R'; 
-				}
-				break;
-			case KeyEvent.VK_UP:
 				if(direction!='D')
 				{
-					direction='U';
+					direction='A'; //Mivel nem akarjuk hogy a felhasználó 180 fokos fordulatot tudnjon tenni és önmagába forduljon a kígyóval így kizártuk ezt a lehetõséget
 				}
 				break;
-			case KeyEvent.VK_DOWN:
-				if(direction!='U')
+				
+			case KeyEvent.VK_RIGHT:
+				if(direction!='A')
 				{
 					direction='D'; 
 				}
 				break;
+				
+			case KeyEvent.VK_UP:
+				if(direction!='W')
+				{
+					direction='S';
+				}
+				break;
+				
+			case KeyEvent.VK_DOWN:
+				if(direction!='S')
+				{
+					direction='W'; 
+				}
+				break;
+				
 			}
 		}
 	}
