@@ -61,6 +61,7 @@ public class GamePanel extends JPanel implements ActionListener
 		g.setFont(new Font("Cartoon Bones", Font.BOLD,60));
 		g.drawString("Game Over", 200, 400);
 		
+		
 	}
 	public void move() //Ez a függvény teszi lehetővé hogy mozogjon a kígyónk tickenként
 	{
@@ -121,6 +122,9 @@ public class GamePanel extends JPanel implements ActionListener
 					g.fillRect(x[j], y[j], unit, unit);
 				}
 			}
+			g.setColor(Color.white);
+			g.setFont(new Font("Elephant",Font.BOLD, 20));
+			g.drawString("Score:"+score, 10, 20);
 		}
 		else
 		{
