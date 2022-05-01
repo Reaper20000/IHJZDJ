@@ -7,7 +7,6 @@ import javax.swing.*;
 
 public class GamePanel extends JPanel implements ActionListener
 {	
-
 	//Balog Dániel AKA Sasa
 	//Neptun: IHJZDJ
 	static final int width=800; //ablaksz�less�g
@@ -23,7 +22,7 @@ public class GamePanel extends JPanel implements ActionListener
 	
 	
 	char direction = 'D';
-	int score; //Pontszám
+	static int score; //Pontszám
 	
 	int foodX; 
 	int foodY;
@@ -34,6 +33,9 @@ public class GamePanel extends JPanel implements ActionListener
 	
 	public GamePanel()
 	{
+		/**
+		 * GamePanel konstruktora
+		 */
 		random= new Random();
 		this.setPreferredSize(new Dimension(width,height)); 
 		this.setBackground(Color.black);
@@ -45,6 +47,9 @@ public class GamePanel extends JPanel implements ActionListener
 	}
 	public void start() 
 	{
+		/**
+		 * Játék indítása
+		 */
 		foodGen();
 		running= true;
 		timer= new Timer(delay,this);
@@ -52,18 +57,28 @@ public class GamePanel extends JPanel implements ActionListener
 	}
 	public void foodGen()
 	{
+		/**
+		 * Étel létrehozása a pálya egy random pontján
+		 */
 		foodX=random.nextInt((int)width/unit)*unit;
 		foodY=random.nextInt((int)height/unit)*unit;
 	}
 	public void gameOver(Graphics g)
 	{
+		/**
+		 * Amikor a játék véget ér akkor piros szöveggel kiírjuk a képernyő közepére hogy game over! 
+		 */
 		g.setColor(Color.red);
 		g.setFont(new Font("Cartoon Bones", Font.BOLD,60));
 		g.drawString("Game Over", 200, 400);
 		
 		
 	}
-	public void move() //Ez a függvény teszi lehetővé hogy mozogjon a kígyónk tickenként
+	public void move() 
+	/**
+	*Ez a függvény teszi lehetővé hogy mozogjon a kígyónk tickenként a gombok nyomásának hatására.
+	*/
+	
 	{
 		for(int i=body; i>0; i--)
 		{
@@ -93,6 +108,9 @@ public class GamePanel extends JPanel implements ActionListener
 	
 	public void draw(Graphics g)
 	{
+		/**
+		 * Ezzel a függvénnyel rajzoljuk meg a pályán random megjelenő ételeket magát a kígyót, a pontszámot és a game over felíratot os
+		 */
 		if (running)
 		{
 			int i=0;
@@ -140,6 +158,9 @@ public class GamePanel extends JPanel implements ActionListener
 		draw(g);
 	}
 	public void actionPerformed(ActionEvent e) {
+		/**
+		 *Minden egyes történés során, mozgatjuk a snake-et, és vizsgáljuk hogy van-e megevett kaja illetve nekiütköztünk-e valaminek, 
+		 */
 		if(running)
 		{
 			move();
@@ -151,6 +172,9 @@ public class GamePanel extends JPanel implements ActionListener
 		
 	}
 	private void checkCollisions() {
+		/**
+		 * Külön esetekre bontva megvizsgáljuk hogy nekiütköztünk-e valaminek.
+		 */
 		//ha a fej összeütközött a testtel
 		for(int i=body; i>0; i--)
 		{
@@ -184,6 +208,9 @@ public class GamePanel extends JPanel implements ActionListener
 	}
 	public void checkFood() {
 		// TODO Auto-generated method stub
+		/**
+		 * Növeljük a test hosszát eggyel ugyanígy a pontszámot eggyel és új ételt generálunk a pálya egy random pontján
+		 */
 		if((x[0]==foodX)  && (y[0]==foodY))
 		{
 			body++;
@@ -194,6 +221,9 @@ public class GamePanel extends JPanel implements ActionListener
 	}
 	public class Control extends KeyAdapter
 	{
+		/**
+		 * A nyilakkalvaló navigálásért felelős függvény class, amiben esetekre szét van bontva hogy épp melyik irányba tudunk menni. 
+		 */
 		public void keyPressed(KeyEvent e)
 		{
 			char k = e.getKeyChar();

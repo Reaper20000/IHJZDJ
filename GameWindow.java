@@ -9,6 +9,9 @@ public class GameWindow extends JFrame
 	//Ez a class az ablak tulajdonságait állítja be mint a címe, átméretezhetõ-e stb stb
 	GameWindow() 
 	{
+		/**
+		 * Játékablak paramétereinek beállítása
+		 */
 		GamePanel panel= new GamePanel();
 		
 		this.add(panel);
