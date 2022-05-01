@@ -57,6 +57,9 @@ public class GamePanel extends JPanel implements ActionListener
 	}
 	public void gameOver(Graphics g)
 	{
+		g.setColor(Color.red);
+		g.setFont(new Font("Cartoon Bones", Font.BOLD,60));
+		g.drawString("Game Over", 200, 400);
 		
 	}
 	public void move() //Ez a függvény teszi lehetővé hogy mozogjon a kígyónk tickenként
@@ -89,33 +92,42 @@ public class GamePanel extends JPanel implements ActionListener
 	
 	public void draw(Graphics g)
 	{
-		int i=0;
-		//Grid hogy lássuk mekkorák a különböző egységek méretei a képernyőn
-		while(i<height/unit)
+		if (running)
 		{
-			i++;
-			g.drawLine(i*unit, 0, i*unit, height);
-			g.drawLine(0, i*unit, width, i*unit);
-
-		}
-		g.setColor(Color.red);
-		g.fillOval(foodX, foodY, unit, unit);
-		
-		
-		
-		for(int j= 0; j<body; j++)
-		{
-			if(j==0) //A kígyó feje
+			int i=0;
+			//Grid hogy lássuk mekkorák a különböző egységek méretei a képernyőn
+			while(i<height/unit)
 			{
-				g.setColor(Color.green);
-				g.fillRect(x[j], y[j], unit, unit);
+				i++;
+				g.drawLine(i*unit, 0, i*unit, height);
+				g.drawLine(0, i*unit, width, i*unit);
+
 			}
-			else
-			{ //Ez pedig a teste
-				g.setColor(new Color(random.nextInt(255),random.nextInt(255),random.nextInt(255)));
-				g.fillRect(x[j], y[j], unit, unit);
+			g.setColor(Color.red);
+			g.fillOval(foodX, foodY, unit, unit);
+			
+			
+			
+			for(int j= 0; j<body; j++)
+			{
+				if(j==0) //A kígyó feje
+				{
+					g.setColor(Color.green);
+					g.fillRect(x[j], y[j], unit, unit);
+				}
+				else
+				{ //Ez pedig a teste
+					g.setColor(new Color(random.nextInt(255),random.nextInt(255),random.nextInt(255)));
+					g.fillRect(x[j], y[j], unit, unit);
+				}
 			}
 		}
+		else
+		{
+			gameOver(g);
+		}
+			
+		
 		
 	}
 	public void paintComponent(Graphics g)
