@@ -11,7 +11,7 @@ public class GamePanel extends JPanel implements ActionListener
 	//Neptun: IHJZDJ
 	static final int width=800; //ablaksz�less�g
 	static final int height=800; //ablakmagass�g
-	static final int delay= 150; //Tickspeed (mennyi id� ut�n l�ptet a j�t�k)
+	static final int delay= 40; //Tickspeed (mennyi id� ut�n l�ptet a j�t�k)
 	static final int unit = 25; //egyseg mérete (mekkora egy kocka)
 	static final int game_units=(height*width)/unit; //mennyi kockát tudunk besűríteni a képbe
 	
@@ -71,7 +71,6 @@ public class GamePanel extends JPanel implements ActionListener
 		g.setColor(Color.red);
 		g.setFont(new Font("Cartoon Bones", Font.BOLD,60));
 		g.drawString("Game Over", 200, 400);
-		
 		
 	}
 	public void move() 
@@ -195,7 +194,7 @@ public class GamePanel extends JPanel implements ActionListener
 			running =false;
 		}
 		//alsó oldal
-		if(x[0] > height-unit)
+		if(y[0] > height-unit)
 		{
 			running =false;
 		}
