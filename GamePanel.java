@@ -8,26 +8,26 @@ import javax.swing.*;
 public class GamePanel extends JPanel implements ActionListener
 {	
 
-	//Balog D·niel AKA Sasa
+	//Balog D√°niel AKA Sasa
 	//Neptun: IHJZDJ
-	static final int width=800; //ablakszÈlessÈg
-	static final int height=800; //ablakmagass·g
-	static final int delay= 150; //Tickspeed (mennyi idı ut·n lÈptet a j·tÈk)
-	static final int unit = 25; //egysÈgmÈrete (mekkora egy kocka)
-	static final int game_units=(height*width)/unit; //mennyi kock·t tudunk bes˚rÌteni a kÈpbe
+	static final int width=800; //ablakszÔøΩlessÔøΩg
+	static final int height=800; //ablakmagassÔøΩg
+	static final int delay= 150; //Tickspeed (mennyi idÔøΩ utÔøΩn lÔøΩptet a jÔøΩtÔøΩk)
+	static final int unit = 25; //egyseg m√©rete (mekkora egy kocka)
+	static final int game_units=(height*width)/unit; //mennyi kock√°t tudunk bes≈±r√≠teni a k√©pbe
 	
 	final int x[] = new int[game_units];
 	final int y[] = new int[game_units];
 	
-	int body= 4; //A kÌgyÛ mÈrete
+	int body= 4; //A k√≠gy√≥ m√©rete
 	
 	
 	char direction = 'D';
-	int score; //Pontsz·m
+	int score; //Pontsz√°m
 	
 	int foodX; 
 	int foodY;
-	//Az alma x Ès y koordin·t·i;
+	//Az alma x ÔøΩs y koordin√°t√°i
 	boolean running= false;
 	Timer timer;
 	Random random;
@@ -59,7 +59,7 @@ public class GamePanel extends JPanel implements ActionListener
 	{
 		
 	}
-	public void move() //Ez a f¸ggvÈny teszi lehetıvÈ hogy mozogjon a kÌgyÛnk tickenkÈnt
+	public void move() //Ez a f√ºggv√©ny teszi lehet≈ëv√© hogy mozogjon a k√≠gy√≥nk tickenk√©nt
 	{
 		for(int i=body; i>0; i--)
 		{
@@ -68,34 +68,21 @@ public class GamePanel extends JPanel implements ActionListener
 			
 		}
 		switch(direction) {
-		case 'U':
+		case 'U': //Felfel√©
 			y[0] = y[0] - unit;
 			break;
-		case 'D':
+		case 'D': //Lefel√©
 			y[0] = y[0] + unit;
 			break;
-		case 'L':
+		case 'L': //Balra 
 			x[0] = x[0] - unit;
 			break;
-		case 'R':
+		case 'R': //Jobbra
 			x[0] = x[0] + unit;
 			break;
 		}
 		
-		/*
-		if(direction=='U') //FelfelÈ		
-			y[0]= y[0] - unit;
 		
-
-		if(direction=='L') //Balra
-			x[0]= x[0] - unit;
-		
-		if(direction=='R') //Jobbra
-			x[0]= x[0] + unit;
-		
-		if(direction=='D') //LefelÈ 
-			y[0]= y[0] + unit;	
-			*/
 	}
 		
 		
@@ -103,7 +90,7 @@ public class GamePanel extends JPanel implements ActionListener
 	public void draw(Graphics g)
 	{
 		int i=0;
-		//Grid hogy l·ssuk mekkor·k a k¸lˆnbˆzı egysÈgek mÈretei a kÈpernyın
+		//Grid hogy l√°ssuk mekkor√°k a k√ºl√∂nb√∂z≈ë egys√©gek m√©retei a k√©perny≈ën
 		while(i<height/unit)
 		{
 			i++;
@@ -118,13 +105,13 @@ public class GamePanel extends JPanel implements ActionListener
 		
 		for(int j= 0; j<body; j++)
 		{
-			if(j==0) //A kÌgyÛ feje
+			if(j==0) //A k√≠gy√≥ feje
 			{
 				g.setColor(Color.green);
 				g.fillRect(x[j], y[j], unit, unit);
 			}
 			else
-			{
+			{ //Ez pedig a teste
 				g.setColor(new Color(random.nextInt(255),random.nextInt(255),random.nextInt(255)));
 				g.fillRect(x[j], y[j], unit, unit);
 			}
@@ -148,15 +135,15 @@ public class GamePanel extends JPanel implements ActionListener
 		
 	}
 	private void checkCollisions() {
-		//ha a fej ˆssze¸tkˆzˆtt a fejjel
+		//ha a fej √∂ssze√ºtk√∂z√∂tt a testtel
 		for(int i=body; i>0; i--)
 		{
 			if((x[0]==x[i]) && (y[0]==y[i]))
 				running = false;
 		}
-		//ha a fej ˆssze¸tkˆzˆtt valamelyik oldallal
+		//ha a fej √∂ssze√ºtk√∂z√∂tt valamelyik oldallal a p√°ly√°n
 		//jobb oldal
-		if(running==false) //ha alapbÛl nem fut a j·tÈk akkor a timer meg·ll
+		if(running==false) //ha alapbÔøΩl  nem fut a j√°t√©k a timer is meg√°ll. 
 			timer.stop();
 		if(x[0] > width-unit)
 		{
@@ -167,12 +154,12 @@ public class GamePanel extends JPanel implements ActionListener
 		{
 			running =false;
 		}
-		//alsÛ oldal
+		//als√≥ oldal
 		if(x[0] > height-unit)
 		{
 			running =false;
 		}
-		//felsı oldal
+		//fels≈ë oldal
 		if(y[0] < 0)
 		{
 			running =false;
@@ -181,68 +168,56 @@ public class GamePanel extends JPanel implements ActionListener
 	}
 	public void checkFood() {
 		// TODO Auto-generated method stub
+		if((x[0]==foodX)  && (y[0]==foodY))
+		{
+			body++;
+			score++;
+			foodGen();
+		}
 		
 	}
 	public class Control extends KeyAdapter
 	{
-		public void buttonPressed(KeyEvent e)
+		public void keyPressed(KeyEvent e)
 		{
-			/*if(a.getKeyCode()==KeyEvent.VK_RIGHT) //Balra fordul·s
+			char k = e.getKeyChar();
+
+			switch(k) 
 			{
-				if(direction!='L')
+			case 'a':
+				if(direction=='R')
 				{
-					direction='R'; //Mivel nem akarjuk hogy a felhaszn·lÛ 180 fokos fordulatot tudnjon tenni Ès ˆnmag·ba forduljon a kÌgyÛval Ìgy kiz·rtuk ezt a lehetısÈget
+					direction='R'; //Mivel nem akarjuk hogy a felhaszn√°l√≥ 180 fokos fordulatot tudnjon tenni √©s √∂nmag√°ba forduljon a k√≠gy√≥val √≠gy kiz√°rtuk ezt a lehet≈ës√©get
+				}else {
+					direction='L';
 				}
-			}
-			if(a.getKeyCode()==KeyEvent.VK_LEFT) //Balra fordul·s
-			{
-				if(direction!='R')
+					
+				break;
+				
+			case 'd':
+				if(direction=='L')
 				{
-					direction='L'; //Mivel nem akarjuk hogy a felhaszn·lÛ 180 fokos fordulatot tudnjon tenni Ès ˆnmag·ba forduljon a kÌgyÛval Ìgy kiz·rtuk ezt a lehetısÈget
-				}
-			}
-			if(a.getKeyCode()==KeyEvent.VK_UP) //Balra fordul·s
-			{
-				if(direction!='D')
-				{
-					direction='U'; //Mivel nem akarjuk hogy a felhaszn·lÛ 180 fokos fordulatot tudnjon tenni Ès ˆnmag·ba forduljon a kÌgyÛval Ìgy kiz·rtuk ezt a lehetısÈget
-				}
-			}
-			if(a.getKeyCode()==KeyEvent.VK_DOWN) //Balra fordul·s
-			{
-				if(direction!='U')
-				{
-					direction='D'; //Mivel nem akarjuk hogy a felhaszn·lÛ 180 fokos fordulatot tudnjon tenni Ès ˆnmag·ba forduljon a kÌgyÛval Ìgy kiz·rtuk ezt a lehetısÈget
-				}
-			}
-			*/
-			switch(e.getKeyChar()) 
-			{
-			case KeyEvent.VK_LEFT:
-				if(direction!='D')
-				{
-					direction='A'; //Mivel nem akarjuk hogy a felhaszn·lÛ 180 fokos fordulatot tudnjon tenni Ès ˆnmag·ba forduljon a kÌgyÛval Ìgy kiz·rtuk ezt a lehetısÈget
+					direction='L'; 
+				}else {
+					direction='R';
 				}
 				break;
 				
-			case KeyEvent.VK_RIGHT:
-				if(direction!='A')
+			case 'w':
+				if(direction=='D')
 				{
-					direction='D'; 
+					direction='D';
+				}else {
+					direction='U';
 				}
 				break;
 				
-			case KeyEvent.VK_UP:
-				if(direction!='W')
+			case 's':
+				if(direction=='U')
 				{
-					direction='S';
-				}
-				break;
-				
-			case KeyEvent.VK_DOWN:
-				if(direction!='S')
-				{
-					direction='W'; 
+					direction='U'; 
+				}else {
+					direction='D';
 				}
 				break;
 				
