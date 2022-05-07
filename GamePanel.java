@@ -11,8 +11,8 @@ public class GamePanel extends JPanel implements ActionListener
 	//Neptun: IHJZDJ
 	static final int width=800; //ablaksz�less�g
 	static final int height=800; //ablakmagass�g
-	static final int delay= 40; //Tickspeed (mennyi id� ut�n l�ptet a j�t�k)
-	static final int unit = 25; //egyseg mérete (mekkora egy kocka)
+	static final int delay= 150; //Tickspeed (mennyi id� ut�n l�ptet a j�t�k)
+	static final int unit = 100; //egyseg mérete (mekkora egy kocka)
 	static final int game_units=(height*width)/unit; //mennyi kockát tudunk besűríteni a képbe
 	
 	final int x[] = new int[game_units];

@@ -10,15 +10,14 @@ public class main
 		//Balog Dániel AKA Sasa
 		//Neptun: IHJZDJ
 		// TODO Auto-generated method stub
-		Player pl= new Player();
-		
+
 		GameWindow window= new GameWindow(); // létrehozzuk az ablakot
-		try {
+		/*try {
 			pl.fileIn();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 	}
 
