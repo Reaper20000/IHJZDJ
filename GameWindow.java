@@ -20,6 +20,7 @@ public class GameWindow extends JFrame
 		this.setVisible(true); //Az adott komponens látható
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Bezáródik az ablak ha kilépünk
 		this.pack();
+		
 	}
-
+	
 }
